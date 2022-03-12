@@ -1,3 +1,5 @@
+React client for 'Elden Ring Bingo' app - allows control of multiple OBS and vMix instances via websockets with a node backend (see other repo).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
