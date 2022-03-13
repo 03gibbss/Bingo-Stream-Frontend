@@ -13,22 +13,26 @@ import { SimpleScene } from "./components/SimpleScene/Index";
 import { Dual } from "./components/Dual/Index";
 import { DualWithCams } from "./components/DualWithCams/Index";
 
-const inputs = [
-  "Team 1 A",
-  "Team 1 B",
-  "Team 2 A",
-  "Team 2 B",
-  "Team 3 A",
-  "Team 3 B",
-  "Team 4 A",
-  "Team 4 B",
-];
-
 function App() {
   const [OBS1Connected, setOBS1Connected] = useState(false);
   const [OBS2Connected, setOBS2Connected] = useState(false);
   const [OBS3Connected, setOBS3Connected] = useState(false);
   const [vMixConnected, setvMixConnected] = useState(false);
+
+  const [inputs, setInputs] = useState([
+    "Team 1 A",
+    "Team 1 B",
+    "Team 2 A",
+    "Team 2 B",
+    "Team 3 A",
+    "Team 3 B",
+    "Team 4 A",
+    "Team 4 B",
+    "Team 5 A",
+    "Team 5 B",
+    "Team 6 A",
+    "Team 6 B",
+  ]);
 
   const [loading, setLoading] = useState(true);
 
@@ -45,11 +49,12 @@ function App() {
       console.log("Websocket connected");
     });
 
-    socketRef.current.on("init", ({ OBS1, OBS2, OBS3, vMix }) => {
+    socketRef.current.on("init", ({ OBS1, OBS2, OBS3, vMix, availableInputs }) => {
       setOBS1Connected(OBS1.connected);
       setOBS2Connected(OBS2.connected);
       setOBS3Connected(OBS3.connected);
       setvMixConnected(vMix.connected);
+      setInputs(availableInputs);
     });
 
     socketRef.current.on("currentScene", (scene) => {
