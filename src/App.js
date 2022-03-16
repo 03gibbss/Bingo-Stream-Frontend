@@ -12,6 +12,7 @@ import { Quad } from "./components/Quad/Index";
 import { SimpleScene } from "./components/SimpleScene/Index";
 import { Dual } from "./components/Dual/Index";
 import { DualWithCams } from "./components/DualWithCams/Index";
+import { GameplayFocus } from "./components/GameplayFocus/Index";
 
 function App() {
   const [OBS1Connected, setOBS1Connected] = useState(false);
@@ -49,13 +50,16 @@ function App() {
       console.log("Websocket connected");
     });
 
-    socketRef.current.on("init", ({ OBS1, OBS2, OBS3, vMix, availableInputs }) => {
-      setOBS1Connected(OBS1.connected);
-      setOBS2Connected(OBS2.connected);
-      setOBS3Connected(OBS3.connected);
-      setvMixConnected(vMix.connected);
-      setInputs(availableInputs);
-    });
+    socketRef.current.on(
+      "init",
+      ({ OBS1, OBS2, OBS3, vMix, availableInputs }) => {
+        setOBS1Connected(OBS1.connected);
+        setOBS2Connected(OBS2.connected);
+        setOBS3Connected(OBS3.connected);
+        setvMixConnected(vMix.connected);
+        setInputs(availableInputs);
+      }
+    );
 
     socketRef.current.on("currentScene", (scene) => {
       setCurrentScene(scene);
@@ -82,36 +86,56 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand>Elden Ring Bingo</Navbar.Brand>
-        </Container>
-      </Navbar>
-      <Container>
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <>
-            <ConnectionList
-              OBS1Connected={OBS1Connected}
-              OBS2Connected={OBS2Connected}
-              OBS3Connected={OBS3Connected}
-              vMixConnected={vMixConnected}
-            />
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <Navbar bg="dark" variant="dark">
+            <Container>
+              <Navbar.Brand>Elden Ringo</Navbar.Brand>
+              <ConnectionList
+                OBS1Connected={OBS1Connected}
+                OBS2Connected={OBS2Connected}
+                OBS3Connected={OBS3Connected}
+                vMixConnected={vMixConnected}
+              />
+            </Container>
+          </Navbar>
+          <Container>
+            <Row>
+              {inputs.map((input) => {
+                return (
+                  <Col key={input}>
+                    <SimpleScene
+                      scene={`Solo ${input}`}
+                      currentScene={currentScene}
+                      handleTransition={handleTransition}
+                    />
+                  </Col>
+                );
+              })}
+            </Row>
 
             <hr></hr>
 
             <Row>
               <Col>
                 <SimpleScene
-                  scene="Multiview"
+                  scene="Multiview A"
                   currentScene={currentScene}
                   handleTransition={handleTransition}
                 />
               </Col>
               <Col>
                 <SimpleScene
-                  scene="Multiview Cams"
+                  scene="Multiview B"
+                  currentScene={currentScene}
+                  handleTransition={handleTransition}
+                />
+              </Col>
+              <Col>
+                <SimpleScene
+                  scene="All Cams"
                   currentScene={currentScene}
                   handleTransition={handleTransition}
                 />
@@ -196,12 +220,30 @@ function App() {
             <hr></hr>
 
             <Row>
-              <Col></Col>
-              <Col></Col>
+              <Col>
+                <GameplayFocus
+                  scene="All Gameplay A"
+                  inputs={inputs}
+                  scenes={scenes}
+                  currentScene={currentScene}
+                  handleChange={handleChange}
+                  handleTransition={handleTransition}
+                />
+              </Col>
+              <Col>
+                <GameplayFocus
+                  scene="All Gameplay B"
+                  inputs={inputs}
+                  scenes={scenes}
+                  currentScene={currentScene}
+                  handleChange={handleChange}
+                  handleTransition={handleTransition}
+                />
+              </Col>
             </Row>
-          </>
-        )}
-      </Container>
+          </Container>
+        </>
+      )}
     </div>
   );
 }
