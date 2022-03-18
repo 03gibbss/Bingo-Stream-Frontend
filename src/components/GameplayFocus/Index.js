@@ -79,17 +79,7 @@ export const GameplayFocus = ({
             currentScene={currentScene}
           />
         </Col>
-        <Col>
-          <h4>9</h4>
-          <InputSelect
-            label="9"
-            inputs={inputs}
-            handleChange={handleChange}
-            scene={scene}
-            initialValue={scenes[scene]["9"]["input"]}
-            currentScene={currentScene}
-          />
-        </Col>
+        <Col></Col>
       </Row>
       <Row>
         <Col>
@@ -125,17 +115,7 @@ export const GameplayFocus = ({
             currentScene={currentScene}
           />
         </Col>
-        <Col>
-          <h4>10</h4>
-          <InputSelect
-            label="10"
-            inputs={inputs}
-            handleChange={handleChange}
-            scene={scene}
-            initialValue={scenes[scene]["10"]["input"]}
-            currentScene={currentScene}
-          />
-        </Col>
+        <Col></Col>
       </Row>
     </>
   );

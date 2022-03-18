@@ -171,31 +171,6 @@ function App() {
 
             <Row>
               <Col>
-                <Dual
-                  scene="Dual A"
-                  inputs={inputs}
-                  scenes={scenes}
-                  currentScene={currentScene}
-                  handleChange={handleChange}
-                  handleTransition={handleTransition}
-                />
-              </Col>
-              <Col>
-                <Dual
-                  scene="Dual B"
-                  inputs={inputs}
-                  scenes={scenes}
-                  currentScene={currentScene}
-                  handleChange={handleChange}
-                  handleTransition={handleTransition}
-                />
-              </Col>
-            </Row>
-
-            <hr></hr>
-
-            <Row>
-              <Col>
                 <DualWithCams
                   scene="Dual with Cams A"
                   inputs={inputs}
@@ -233,6 +208,31 @@ function App() {
               <Col>
                 <GameplayFocus
                   scene="All Gameplay B"
+                  inputs={inputs}
+                  scenes={scenes}
+                  currentScene={currentScene}
+                  handleChange={handleChange}
+                  handleTransition={handleTransition}
+                />
+              </Col>
+            </Row>
+
+            <hr></hr>
+
+            <Row>
+              <Col>
+                <Dual
+                  scene="Dual A"
+                  inputs={inputs}
+                  scenes={scenes}
+                  currentScene={currentScene}
+                  handleChange={handleChange}
+                  handleTransition={handleTransition}
+                />
+              </Col>
+              <Col>
+                <Dual
+                  scene="Dual B"
                   inputs={inputs}
                   scenes={scenes}
                   currentScene={currentScene}
