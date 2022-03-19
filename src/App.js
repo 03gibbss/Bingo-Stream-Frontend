@@ -10,7 +10,7 @@ import Row from "react-bootstrap/Row";
 import { ConnectionList } from "./components/ConnectedList/Index";
 import { Quad } from "./components/Quad/Index";
 import { SimpleScene } from "./components/SimpleScene/Index";
-import { Dual } from "./components/Dual/Index";
+// import { Dual } from "./components/Dual/Index";
 import { DualWithCams } from "./components/DualWithCams/Index";
 import { GameplayFocus } from "./components/GameplayFocus/Index";
 
@@ -119,16 +119,30 @@ function App() {
             <hr></hr>
 
             <Row>
-              <Col>
+            <Col>
                 <SimpleScene
-                  scene="Multiview A"
+                  scene="vMix - Intro"
                   currentScene={currentScene}
                   handleTransition={handleTransition}
                 />
               </Col>
               <Col>
                 <SimpleScene
-                  scene="Multiview B"
+                  scene="vMix - Map"
+                  currentScene={currentScene}
+                  handleTransition={handleTransition}
+                />
+              </Col>
+              <Col>
+                <SimpleScene
+                  scene="vMix - Rules"
+                  currentScene={currentScene}
+                  handleTransition={handleTransition}
+                />
+              </Col>
+              <Col>
+                <SimpleScene
+                  scene="Multiview A"
                   currentScene={currentScene}
                   handleTransition={handleTransition}
                 />
@@ -208,31 +222,6 @@ function App() {
               <Col>
                 <GameplayFocus
                   scene="All Gameplay B"
-                  inputs={inputs}
-                  scenes={scenes}
-                  currentScene={currentScene}
-                  handleChange={handleChange}
-                  handleTransition={handleTransition}
-                />
-              </Col>
-            </Row>
-
-            <hr></hr>
-
-            <Row>
-              <Col>
-                <Dual
-                  scene="Dual A"
-                  inputs={inputs}
-                  scenes={scenes}
-                  currentScene={currentScene}
-                  handleChange={handleChange}
-                  handleTransition={handleTransition}
-                />
-              </Col>
-              <Col>
-                <Dual
-                  scene="Dual B"
                   inputs={inputs}
                   scenes={scenes}
                   currentScene={currentScene}
