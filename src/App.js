@@ -35,6 +35,8 @@ function App() {
     "Team 6 B",
   ]);
 
+  const playerNames = ['Ravs', 'Martyn', 'Rythian', 'Daf', 'Ben', 'Zylus', 'Nilesy', 'Daltos'];
+
   const [loading, setLoading] = useState(true);
 
   const [scenes, setScenes] = useState({});
@@ -103,7 +105,7 @@ function App() {
           </Navbar>
           <Container>
             <Row>
-              {inputs.map((input) => {
+              {inputs.map((input, index) => {
                 return (
                   <Col key={input}>
                     <SimpleScene
@@ -111,6 +113,7 @@ function App() {
                       currentScene={currentScene}
                       handleTransition={handleTransition}
                     />
+                    <h3>{playerNames[index]}</h3>
                   </Col>
                 );
               })}
