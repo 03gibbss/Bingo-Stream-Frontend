@@ -3,8 +3,8 @@ import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { InputSelect } from "../Quad/InputSelect";
-import { SimpleScene } from "../SimpleScene/Index";
+import { InputSelect } from "../InputSelect";
+import { SimpleScene } from "../SimpleScene";
 
 export const Dual = ({
   scene,

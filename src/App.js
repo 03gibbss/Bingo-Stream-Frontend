@@ -7,12 +7,12 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-import { ConnectionList } from "./components/ConnectedList/Index";
-import { Quad } from "./components/Quad/Index";
-import { SimpleScene } from "./components/SimpleScene/Index";
-// import { Dual } from "./components/Dual/Index";
-import { DualWithCams } from "./components/DualWithCams/Index";
-import { GameplayFocus } from "./components/GameplayFocus/Index";
+import { ConnectionList } from "./components/ConnectedList";
+import { Quad } from "./components/Quad";
+import { SimpleScene } from "./components/SimpleScene";
+// import { Dual } from "./components/Dual";
+import { DualWithCams } from "./components/DualWithCams";
+import { GameplayFocus } from "./components/GameplayFocus";
 
 function App() {
   const [OBS1Connected, setOBS1Connected] = useState(false);
@@ -50,6 +50,8 @@ function App() {
     "Player Twelve",
   ]);
 
+  const [scenePresets, setScenePresets] = useState({});
+
   const [loading, setLoading] = useState(true);
 
   const [scenes, setScenes] = useState({});
@@ -83,6 +85,10 @@ function App() {
 
     socketRef.current.on("sceneInfo", (scenes) => {
       setScenes(scenes);
+    });
+
+    socketRef.current.on("presetInfo", (scenePresets) => {
+      setScenePresets(scenePresets);
       setLoading(false);
     });
 
@@ -95,6 +101,11 @@ function App() {
 
   const handleTransition = (scene) => {
     socketRef.current.emit("handleTransition", scene);
+  };
+
+  const handlePreset = (scene, preset) => {
+    console.log(preset);
+    socketRef.current.emit("handlePreset", scene, preset);
   };
 
   return (
@@ -188,6 +199,8 @@ function App() {
                   currentScene={currentScene}
                   handleChange={handleChange}
                   handleTransition={handleTransition}
+                  handlePreset={handlePreset}
+                  scenePresets={scenePresets}
                 />
               </Col>
               <Col>
@@ -199,6 +212,8 @@ function App() {
                   currentScene={currentScene}
                   handleChange={handleChange}
                   handleTransition={handleTransition}
+                  handlePreset={handlePreset}
+                  scenePresets={scenePresets}
                 />
               </Col>
             </Row>
@@ -215,6 +230,8 @@ function App() {
                   currentScene={currentScene}
                   handleChange={handleChange}
                   handleTransition={handleTransition}
+                  handlePreset={handlePreset}
+                  scenePresets={scenePresets}
                 />
               </Col>
               <Col>
@@ -226,6 +243,8 @@ function App() {
                   currentScene={currentScene}
                   handleChange={handleChange}
                   handleTransition={handleTransition}
+                  handlePreset={handlePreset}
+                  scenePresets={scenePresets}
                 />
               </Col>
             </Row>
@@ -242,6 +261,8 @@ function App() {
                   currentScene={currentScene}
                   handleChange={handleChange}
                   handleTransition={handleTransition}
+                  handlePreset={handlePreset}
+                  scenePresets={scenePresets}
                 />
               </Col>
               <Col>
@@ -253,6 +274,8 @@ function App() {
                   currentScene={currentScene}
                   handleChange={handleChange}
                   handleTransition={handleTransition}
+                  handlePreset={handlePreset}
+                  scenePresets={scenePresets}
                 />
               </Col>
             </Row>

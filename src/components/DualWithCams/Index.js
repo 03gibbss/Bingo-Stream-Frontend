@@ -3,8 +3,8 @@ import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { InputSelect } from "../Quad/InputSelect";
-import { SimpleScene } from "../SimpleScene/Index";
+import { InputSelect } from "../InputSelect";
+import { SceneHeader } from "../SceneHeader";
 
 export const DualWithCams = ({
   scene,
@@ -14,13 +14,17 @@ export const DualWithCams = ({
   playerNames,
   handleChange,
   handleTransition,
+  handlePreset,
+  scenePresets,
 }) => {
   return (
     <>
-      <SimpleScene
+      <SceneHeader
+        scenePresets={scenePresets}
         scene={scene}
         currentScene={currentScene}
         handleTransition={handleTransition}
+        handlePreset={handlePreset}
       />
       <Row>
         <Col>
