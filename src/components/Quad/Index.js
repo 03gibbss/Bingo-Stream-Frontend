@@ -11,6 +11,7 @@ export const Quad = ({
   scenes,
   currentScene,
   inputs,
+  playerNames,
   handleChange,
   handleTransition,
 }) => {
@@ -27,6 +28,7 @@ export const Quad = ({
           <InputSelect
             label="Top Left"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["Top Left"]["input"]}
@@ -38,6 +40,7 @@ export const Quad = ({
           <InputSelect
             label="Top Right"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["Top Right"]["input"]}
@@ -51,6 +54,7 @@ export const Quad = ({
           <InputSelect
             label="Bottom Left"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["Bottom Left"]["input"]}
@@ -62,6 +66,7 @@ export const Quad = ({
           <InputSelect
             label="Bottom Right"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["Bottom Right"]["input"]}

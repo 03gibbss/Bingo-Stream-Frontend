@@ -11,6 +11,7 @@ export const GameplayFocus = ({
   scenes,
   currentScene,
   inputs,
+  playerNames,
   handleChange,
   handleTransition,
 }) => {
@@ -27,6 +28,7 @@ export const GameplayFocus = ({
           <InputSelect
             label="Top Left"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["Top Left"]["input"]}
@@ -38,6 +40,7 @@ export const GameplayFocus = ({
           <InputSelect
             label="Top Right"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["Top Right"]["input"]}
@@ -51,6 +54,7 @@ export const GameplayFocus = ({
           <InputSelect
             label="3"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["3"]["input"]}
@@ -62,6 +66,7 @@ export const GameplayFocus = ({
           <InputSelect
             label="5"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["5"]["input"]}
@@ -73,6 +78,7 @@ export const GameplayFocus = ({
           <InputSelect
             label="7"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["7"]["input"]}
@@ -87,6 +93,7 @@ export const GameplayFocus = ({
           <InputSelect
             label="4"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["4"]["input"]}
@@ -98,6 +105,7 @@ export const GameplayFocus = ({
           <InputSelect
             label="6"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["6"]["input"]}
@@ -109,6 +117,7 @@ export const GameplayFocus = ({
           <InputSelect
             label="8"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["8"]["input"]}

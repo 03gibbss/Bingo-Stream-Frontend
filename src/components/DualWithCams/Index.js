@@ -11,6 +11,7 @@ export const DualWithCams = ({
   scenes,
   currentScene,
   inputs,
+  playerNames,
   handleChange,
   handleTransition,
 }) => {
@@ -27,6 +28,7 @@ export const DualWithCams = ({
           <InputSelect
             label="Top Left"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["Top Left"]["input"]}
@@ -38,6 +40,7 @@ export const DualWithCams = ({
           <InputSelect
             label="Top Right"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["Top Right"]["input"]}
@@ -51,6 +54,7 @@ export const DualWithCams = ({
           <InputSelect
             label="Left Cam"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["Left Cam"]["input"]}
@@ -62,6 +66,7 @@ export const DualWithCams = ({
           <InputSelect
             label="Right Cam"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["Right Cam"]["input"]}

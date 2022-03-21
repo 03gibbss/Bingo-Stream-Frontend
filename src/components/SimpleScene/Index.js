@@ -9,7 +9,7 @@ export const SimpleScene = ({ scene, currentScene, handleTransition }) => {
         variant={currentScene === scene ? "success" : "primary"}
         onClick={() => handleTransition(scene)}
       >
-        {scene}: Switch
+        {scene}
       </Button>
     </>
   );

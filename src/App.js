@@ -35,7 +35,20 @@ function App() {
     "Team 6 B",
   ]);
 
-  const playerNames = ['Ravs', 'Martyn', 'Rythian', 'Daf', 'Ben', 'Zylus', 'Nilesy', 'Daltos'];
+  const [playerNames, setPlayerNames] = useState([
+    "Player One",
+    "Player Two",
+    "Player Three",
+    "Player Four",
+    "Player Five",
+    "Player Six",
+    "Player Seven",
+    "Player Eight",
+    "Player Nine",
+    "Player Ten",
+    "Player Eleven",
+    "Player Twelve",
+  ]);
 
   const [loading, setLoading] = useState(true);
 
@@ -54,12 +67,13 @@ function App() {
 
     socketRef.current.on(
       "init",
-      ({ OBS1, OBS2, OBS3, vMix, availableInputs }) => {
+      ({ OBS1, OBS2, OBS3, vMix, availableInputs, playerNames }) => {
         setOBS1Connected(OBS1.connected);
         setOBS2Connected(OBS2.connected);
         setOBS3Connected(OBS3.connected);
         setvMixConnected(vMix.connected);
         setInputs(availableInputs);
+        setPlayerNames(playerNames);
       }
     );
 
@@ -68,8 +82,6 @@ function App() {
     });
 
     socketRef.current.on("sceneInfo", (scenes) => {
-      console.log(scenes);
-
       setScenes(scenes);
       setLoading(false);
     });
@@ -78,7 +90,6 @@ function App() {
   }, [OBS1Connected, OBS2Connected, OBS3Connected, vMixConnected]);
 
   const handleChange = (scene, position, input) => {
-    console.log("change", scene, position, input);
     socketRef.current.emit("handleChange", scene, position, input);
   };
 
@@ -109,11 +120,10 @@ function App() {
                 return (
                   <Col key={input}>
                     <SimpleScene
-                      scene={`Solo ${input}`}
+                      scene={`${playerNames[index]}`}
                       currentScene={currentScene}
                       handleTransition={handleTransition}
                     />
-                    <h3>{playerNames[index]}</h3>
                   </Col>
                 );
               })}
@@ -122,7 +132,7 @@ function App() {
             <hr></hr>
 
             <Row>
-            <Col>
+              <Col>
                 <SimpleScene
                   scene="vMix - Intro"
                   currentScene={currentScene}
@@ -139,6 +149,13 @@ function App() {
               <Col>
                 <SimpleScene
                   scene="vMix - Rules"
+                  currentScene={currentScene}
+                  handleTransition={handleTransition}
+                />
+              </Col>
+              <Col>
+                <SimpleScene
+                  scene="vMix - Board"
                   currentScene={currentScene}
                   handleTransition={handleTransition}
                 />
@@ -166,6 +183,7 @@ function App() {
                 <Quad
                   scene="Quad A"
                   inputs={inputs}
+                  playerNames={playerNames}
                   scenes={scenes}
                   currentScene={currentScene}
                   handleChange={handleChange}
@@ -176,6 +194,7 @@ function App() {
                 <Quad
                   scene="Quad B"
                   inputs={inputs}
+                  playerNames={playerNames}
                   scenes={scenes}
                   currentScene={currentScene}
                   handleChange={handleChange}
@@ -191,6 +210,7 @@ function App() {
                 <DualWithCams
                   scene="Dual with Cams A"
                   inputs={inputs}
+                  playerNames={playerNames}
                   scenes={scenes}
                   currentScene={currentScene}
                   handleChange={handleChange}
@@ -201,6 +221,7 @@ function App() {
                 <DualWithCams
                   scene="Dual with Cams B"
                   inputs={inputs}
+                  playerNames={playerNames}
                   scenes={scenes}
                   currentScene={currentScene}
                   handleChange={handleChange}
@@ -216,6 +237,7 @@ function App() {
                 <GameplayFocus
                   scene="All Gameplay A"
                   inputs={inputs}
+                  playerNames={playerNames}
                   scenes={scenes}
                   currentScene={currentScene}
                   handleChange={handleChange}
@@ -226,6 +248,7 @@ function App() {
                 <GameplayFocus
                   scene="All Gameplay B"
                   inputs={inputs}
+                  playerNames={playerNames}
                   scenes={scenes}
                   currentScene={currentScene}
                   handleChange={handleChange}

@@ -11,6 +11,7 @@ export const Dual = ({
   scenes,
   currentScene,
   inputs,
+  playerNames,
   handleChange,
   handleTransition,
 }) => {
@@ -27,6 +28,7 @@ export const Dual = ({
           <InputSelect
             label="Top Left"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["Top Left"]["input"]}
@@ -38,6 +40,7 @@ export const Dual = ({
           <InputSelect
             label="Top Right"
             inputs={inputs}
+            playerNames={playerNames}
             handleChange={handleChange}
             scene={scene}
             initialValue={scenes[scene]["Top Right"]["input"]}
