@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import { InputSelect } from "../InputSelect";
-import { SimpleScene } from "../SimpleScene";
+import { SceneHeader } from "../SceneHeader";
 
 export const GameplayFocus = ({
   scene,
@@ -14,13 +14,17 @@ export const GameplayFocus = ({
   playerNames,
   handleChange,
   handleTransition,
+  handlePreset,
+  scenePresets,
 }) => {
   return (
     <>
-      <SimpleScene
+      <SceneHeader
+        scenePresets={scenePresets}
         scene={scene}
         currentScene={currentScene}
         handleTransition={handleTransition}
+        handlePreset={handlePreset}
       />
       <Row>
         <Col>

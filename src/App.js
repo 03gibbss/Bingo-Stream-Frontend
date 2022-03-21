@@ -67,6 +67,10 @@ function App() {
       console.log("Websocket connected");
     });
 
+    socketRef.current.on("disconnect", () => {
+      setLoading(true);
+    });
+
     socketRef.current.on(
       "init",
       ({ OBS1, OBS2, OBS3, vMix, availableInputs, playerNames }) => {
@@ -104,7 +108,6 @@ function App() {
   };
 
   const handlePreset = (scene, preset) => {
-    console.log(preset);
     socketRef.current.emit("handlePreset", scene, preset);
   };
 
