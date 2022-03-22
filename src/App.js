@@ -134,7 +134,7 @@ function App() {
                 return (
                   <Col key={input}>
                     <SimpleScene
-                      scene={`${playerNames[index]}`}
+                      scene={`Solo: ${playerNames[index]}`}
                       currentScene={currentScene}
                       handleTransition={handleTransition}
                     />
