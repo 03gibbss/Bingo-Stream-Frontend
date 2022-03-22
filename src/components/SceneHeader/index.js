@@ -13,7 +13,7 @@ export const SceneHeader = ({
   handleTransition,
   handlePreset,
 }) => {
-  const hasPresets = scenePresets?.[scene];
+  const hasPresets = scenePresets[scene].length;
 
   return (
     <>
