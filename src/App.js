@@ -9,6 +9,7 @@ import Row from "react-bootstrap/Row";
 
 import { ConnectionList } from "./components/ConnectedList";
 import { MuteToggle } from "./components/MuteToggle";
+import { VisibilityToggle } from "./components/VisibilityToggle";
 import { Quad } from "./components/Quad";
 import { SimpleScene } from "./components/SimpleScene";
 // import { Dual } from "./components/Dual";
@@ -66,6 +67,36 @@ function App() {
     true,
   ]);
 
+  const [gameVisibility, setGameVisibility] = useState([
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+  ]);
+
+  const [camVisibility, setCamVisibility] = useState([
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+  ]);
+
   const [scenePresets, setScenePresets] = useState({});
 
   const [loading, setLoading] = useState(true);
@@ -97,6 +128,8 @@ function App() {
         availableInputs,
         playerNames,
         muteStates,
+        gameVisibility,
+        camVisibility,
       }) => {
         setOBS1Connected(OBS1.connected);
         setOBS2Connected(OBS2.connected);
@@ -105,6 +138,8 @@ function App() {
         setInputs(availableInputs);
         setPlayerNames(playerNames);
         setMuteStates(muteStates);
+        setGameVisibility(gameVisibility);
+        setCamVisibility(camVisibility);
       }
     );
 
@@ -125,6 +160,14 @@ function App() {
       setMuteStates(muteStates);
     });
 
+    socketRef.current.on("gameVisibility", (gameVisibility) => {
+      setGameVisibility(gameVisibility);
+    });
+
+    socketRef.current.on("camVisibility", (camVisibility) => {
+      setCamVisibility(camVisibility);
+    });
+
     return () => socketRef.current.disconnect();
   }, [OBS1Connected, OBS2Connected, OBS3Connected, vMixConnected]);
 
@@ -142,6 +185,10 @@ function App() {
 
   const handleMuteToggle = (scene) => {
     socketRef.current.emit("handleMuteToggle", scene);
+  };
+
+  const handleVisibilityToggle = (scene, type) => {
+    socketRef.current.emit("handleVisibilityToggle", scene, type.toLowerCase());
   };
 
   return (
@@ -175,6 +222,18 @@ function App() {
                       scene={inputs[index]}
                       muteState={muteStates[index]}
                       handleMuteToggle={handleMuteToggle}
+                    />
+                    <VisibilityToggle
+                      scene={inputs[index]}
+                      type="Game"
+                      visible={gameVisibility[index]}
+                      handleVisibilityToggle={handleVisibilityToggle}
+                    />
+                    <VisibilityToggle
+                      scene={inputs[index]}
+                      type="Cam"
+                      visible={camVisibility[index]}
+                      handleVisibilityToggle={handleVisibilityToggle}
                     />
                   </Col>
                 );
