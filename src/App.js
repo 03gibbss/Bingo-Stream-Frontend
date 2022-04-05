@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 import { ConnectionList } from "./components/ConnectedList";
+import { MuteToggle } from "./components/MuteToggle";
 import { Quad } from "./components/Quad";
 import { SimpleScene } from "./components/SimpleScene";
 // import { Dual } from "./components/Dual";
@@ -50,6 +51,21 @@ function App() {
     "Player Twelve",
   ]);
 
+  const [muteStates, setMuteStates] = useState([
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+  ]);
+
   const [scenePresets, setScenePresets] = useState({});
 
   const [loading, setLoading] = useState(true);
@@ -73,13 +89,22 @@ function App() {
 
     socketRef.current.on(
       "init",
-      ({ OBS1, OBS2, OBS3, vMix, availableInputs, playerNames }) => {
+      ({
+        OBS1,
+        OBS2,
+        OBS3,
+        vMix,
+        availableInputs,
+        playerNames,
+        muteStates,
+      }) => {
         setOBS1Connected(OBS1.connected);
         setOBS2Connected(OBS2.connected);
         setOBS3Connected(OBS3.connected);
         setvMixConnected(vMix.connected);
         setInputs(availableInputs);
         setPlayerNames(playerNames);
+        setMuteStates(muteStates);
       }
     );
 
@@ -96,6 +121,10 @@ function App() {
       setLoading(false);
     });
 
+    socketRef.current.on("muteStates", (muteStates) => {
+      setMuteStates(muteStates);
+    });
+
     return () => socketRef.current.disconnect();
   }, [OBS1Connected, OBS2Connected, OBS3Connected, vMixConnected]);
 
@@ -109,6 +138,10 @@ function App() {
 
   const handlePreset = (scene, preset) => {
     socketRef.current.emit("handlePreset", scene, preset);
+  };
+
+  const handleMuteToggle = (scene) => {
+    socketRef.current.emit("handleMuteToggle", scene);
   };
 
   return (
@@ -137,6 +170,11 @@ function App() {
                       scene={`Solo: ${playerNames[index]}`}
                       currentScene={currentScene}
                       handleTransition={handleTransition}
+                    />
+                    <MuteToggle
+                      scene={inputs[index]}
+                      muteState={muteStates[index]}
+                      handleMuteToggle={handleMuteToggle}
                     />
                   </Col>
                 );
