@@ -199,7 +199,7 @@ function App() {
         <>
           <Navbar bg="dark" variant="dark">
             <Container>
-              <Navbar.Brand>Elden Ringo</Navbar.Brand>
+              <Navbar.Brand>Bingo Stream App</Navbar.Brand>
               <ConnectionList
                 OBS1Connected={OBS1Connected}
                 OBS2Connected={OBS2Connected}
